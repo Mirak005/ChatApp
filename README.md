@@ -1,6 +1,7 @@
 # ChatApp
 Server-stream-event (HTML , CSS , javaScript , nodejs , expreejs)
-Warning : this is an experiment to produce a prototype of a chat application for educational purposes
+
+this is an experiment to produce a prototype of a chat application for educational purposes :p :p :p
 
 1-npm install
 
