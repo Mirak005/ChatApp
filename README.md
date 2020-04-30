@@ -1,9 +1,6 @@
 # ChatApp
 Server-stream-event (HTML , CSS , javaScript , nodejs , expreejs)
-Warning : This is just an experiment  to make a prototype of a chatapp with server stream event to a learn purpose , 
-
-so the code my not be a reference 
-
+Warning : this is an experiment to produce a prototype of a chat application for educational purposes
 
 1-npm install
 
