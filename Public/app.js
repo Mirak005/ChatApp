@@ -67,9 +67,7 @@ function sse() {
 
   eventSource.addEventListener("message", e => {
     let chat = JSON.parse(e.data);
-    console.log(chat.pop());
-    updateChat(chat.pop());
-    console.log(chat);
+    updateChat(chat[chat.length - 1]);
   });
 }
 
