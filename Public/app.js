@@ -57,7 +57,7 @@ function updateChat(event) {
 function greet() {
   const navmenu = document.getElementById("navmenu");
   const logout = document.createElement("li");
-  const textLogout = document.createTextNode("Logut");
+  const textLogout = document.createTextNode("Logout");
   logout.appendChild(textLogout);
   logout.addEventListener("click", () => {
     alert("Good Bye " + localStorage.getItem("userName"));
