@@ -1,13 +1,11 @@
 const express = require("express");
+const path = require('path');
 
 const app = express();
 
 app.use(express.json());
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("Public"))
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "index.html");
-});
 
 let data = [{ userName: "Mirak005", msg: "Welcome to ChatApp" }];
 let globalVersion = 0;
