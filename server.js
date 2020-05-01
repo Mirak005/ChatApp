@@ -46,7 +46,7 @@ app.get("/sse", (req, res) => {
 });
 
 //Lunch the server
-const port = process.env.PORT || 5000;
+const port = 5000;
 app.listen(port, err => {
   err ? console.error(err) : console.log(`Server is running on port ${port}`);
 });
