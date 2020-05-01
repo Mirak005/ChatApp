@@ -1,5 +1,5 @@
 //Get a User Name
-window.onload = function() {
+window.addEventListener("load", function() {
   if (!localStorage.getItem("userName")) {
     let username = prompt("enter a user name");
     if (username !== null && username.trim() !== "") {
@@ -12,7 +12,19 @@ window.onload = function() {
 
   alert("Welcome " + localStorage.getItem("userName"));
   greet();
-};
+});
+
+//get last messages
+
+async function getMsg() {
+  try {
+    let res = await fetch("/chat");
+    let data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 //Send Message
 
@@ -37,8 +49,8 @@ async function sendMessag(data) {
 function updateChat(event) {
   const chat = document.querySelector(".messages ul");
   event.userName === localStorage.getItem("userName")
-    ? (chat.innerHTML += `<li class="current-user-message"> <b>${event.userName}</b> :${event.msg}</li>`)
-    : (chat.innerHTML += `<li> <b>${event.userName}</b> :${event.msg}</li>`);
+    ? (chat.innerHTML += `<li class="current-user-message">${event.userName}: ${event.msg} <span class="time"> ${event.date}</span> </li>`)
+    : (chat.innerHTML += `<li>${event.userName}: ${event.msg} <span class="time">${event.date}</span> </li>`);
   document.querySelector(".messages ul li:last-child").scrollIntoView();
 }
 
@@ -65,9 +77,15 @@ function greet() {
 function sse() {
   let eventSource = new EventSource(`/sse`);
 
-  eventSource.addEventListener("message", e => {
-    let chat = JSON.parse(e.data);
+  eventSource.addEventListener("open", async () => {
+    let chat = await getMsg();
+    chat.forEach(el => updateChat(el));
+    document.querySelector(".messages ul").firstElementChild.remove();
+  });
 
+  eventSource.addEventListener("message", e => {
+    console.log("Message from server  ");
+    let chat = JSON.parse(e.data);
     updateChat(chat[chat.length - 1]);
   });
 }

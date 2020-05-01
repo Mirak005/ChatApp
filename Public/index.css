@@ -14,7 +14,7 @@ header .container {
   justify-content: space-between;
   align-items: center;
   padding: 1em 3em;
-  background-color: #318CE7;
+  background-color: #318ce7;
   border-bottom: 2px solid rgb(28, 46, 46, 0.5);
   color: ghostwhite;
 }
@@ -25,15 +25,16 @@ nav ul {
 }
 nav ul li {
   margin: 0 1em;
+  cursor: pointer;
 }
 
 #app {
   height: 90.5vh;
- 
+
   display: flex;
 }
 .menu {
-  background-color: #318CE7;
+  background-color: #318ce7;
   color: ghostwhite;
   flex-basis: 20%;
 }
@@ -44,15 +45,6 @@ nav ul li {
 .menu li:hover {
   border-bottom: 1px solid ghostwhite;
   transition: ease-in-out 0.3s;
-}
-
-.avatar {
-  border-radius: 50%;
-  text-align: center;
-  background-color: black;
-  color: ghostwhite;
-  padding: 1em;
-  font: 20px;
 }
 
 .chat {
@@ -72,11 +64,20 @@ nav ul li {
 .messages ul li {
   padding: 0.5em;
   border-bottom: 1px solid rgba(47, 125, 204, 0.466);
+  display: flex;
+  justify-content: space-between;
 }
-.current-user-message{
-  background-color: rgba(32, 97, 161, 0.431);
-  color: rgba(16, 16, 36, 0.945);
-  font-size: 20px;
+.current-user-message {
+  background-color: rgba(22, 125, 228, 0.712);
+  color: ghostwhite;
+  font-size: 18px;
+}
+.time {
+  color: rgba(0, 0, 0, 0.349);
+  /* position: absolute;
+  right: 10%;
+  top: 10%; */
+  font-size: 16px;
 }
 
 .chat form {
@@ -89,7 +90,7 @@ nav ul li {
 }
 .chat form button {
   color: ghostwhite;
-  background-color: #318CE7;
+  background-color: #318ce7;
   padding: 1em 2em;
   border: none;
   border-radius: 5px;

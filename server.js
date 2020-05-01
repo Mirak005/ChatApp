@@ -1,17 +1,24 @@
 const express = require("express");
-const path = require("path");
-
+const moment = require("moment");
 const app = express();
 
 app.use(express.json());
 app.use(express.static("Public"));
 
-let data = [{ userName: "Mirak005", msg: "Welcome to ChatApp" }];
+let data = [];
 let globalVersion = 0;
+
+app.get("/chat", async (req, res) => {
+  try {
+    return res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 app.post("/chat", async (req, res) => {
   try {
-    data = [...data, req.body];
+    data = [...data, { ...req.body, date: moment().format("YYYY/MM/d hh:mm") }];
     globalVersion++;
     res.status(200).send("Sccess");
   } catch (error) {
@@ -30,7 +37,6 @@ app.get("/sse", (req, res) => {
   };
 
   res.writeHead(200, headers);
-  res.write(`data:${JSON.stringify(data)}\n\n`);
 
   setInterval(() => {
     //check the difference betwen versions each 0.5 second

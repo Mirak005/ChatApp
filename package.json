@@ -9,7 +9,8 @@
   "author": "karim gharbi",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "moment": "^2.25.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
