@@ -1,11 +1,10 @@
 const express = require("express");
-const path = require('path');
+const path = require("path");
 
 const app = express();
 
 app.use(express.json());
-app.use(express.static("Public"))
-
+app.use(express.static("Public"));
 
 let data = [{ userName: "Mirak005", msg: "Welcome to ChatApp" }];
 let globalVersion = 0;
@@ -46,7 +45,7 @@ app.get("/sse", (req, res) => {
 });
 
 //Lunch the server
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, err => {
   err ? console.error(err) : console.log(`Server is running on port ${port}`);
 });

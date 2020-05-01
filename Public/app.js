@@ -63,11 +63,11 @@ function greet() {
 
 //Server-Stream-Event
 function sse() {
-  let eventSource = new EventSource(`http://localhost:5000/sse`);
+  let eventSource = new EventSource(`/sse`);
 
   eventSource.addEventListener("message", e => {
     let chat = JSON.parse(e.data);
-    
+
     updateChat(chat[chat.length - 1]);
   });
 }
