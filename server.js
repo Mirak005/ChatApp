@@ -5,6 +5,10 @@ const app = express();
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "index.html");
+});
+
 let data = [{ userName: "Mirak005", msg: "Welcome to ChatApp" }];
 let globalVersion = 0;
 
@@ -32,13 +36,12 @@ app.get("/sse", (req, res) => {
   res.write(`data:${JSON.stringify(data)}\n\n`);
 
   setInterval(() => {
-
     //check the difference betwen versions each 0.5 second
     if (currentVersion < globalVersion) {
       res.write(`data:${JSON.stringify(data)}\n\n`);
       currentVersion = globalVersion;
-      if(data.length > 10){
-        data.splice(0,5)
+      if (data.length > 10) {
+        data.splice(0, 5);
       }
     }
   }, 1000);
