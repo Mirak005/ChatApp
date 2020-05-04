@@ -92,9 +92,10 @@ function sse() {
 
 // Chat input
 const form = document.getElementById("form-chat");
-const input = document.querySelector("#form-chat textarea");
 
 form.addEventListener("submit", e => {
+  const input = document.querySelector("#form-chat textarea");
+
   e.preventDefault();
   if (!input.value.trim()) {
     return alert("Please enter a message :D ");

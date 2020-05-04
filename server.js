@@ -18,7 +18,13 @@ app.get("/chat", async (req, res) => {
 
 app.post("/chat", async (req, res) => {
   try {
-    data = [...data, { ...req.body, date: moment().format("YYYY/MM/d hh:mm") }];
+    data = [
+      ...data,
+      {
+        ...req.body,
+        date: moment().format("L LT")
+      }
+    ];
     globalVersion++;
     res.status(200).send("Sccess");
   } catch (error) {
@@ -28,8 +34,6 @@ app.post("/chat", async (req, res) => {
 
 app.get("/sse", (req, res) => {
   // Mandatory headers and http status to keep connection open
-  let currentVersion = 0;
-
   const headers = {
     "Content-Type": "text/event-stream",
     Connection: "keep-alive",
@@ -38,6 +42,7 @@ app.get("/sse", (req, res) => {
 
   res.writeHead(200, headers);
 
+  let currentVersion = 0;
   setInterval(() => {
     //check the difference betwen versions each 0.5 second
     if (currentVersion < globalVersion) {
